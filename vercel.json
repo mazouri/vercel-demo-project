@@ -2,31 +2,25 @@
     "version": 2,
     "builds": [
         {
-            "src": "frontend",
-            "use": "@vercel/node",
+            "src": "frontend/package.json",  
+            "use": "@vercel/static-build",   
             "config": {
-                "runtime": "nodejs14.x",
-                "buildCommand": "npm run build",
-                "outputDirectory": "frontend/build"
+                "distDir": "build"           
             }
         },
         {
             "src": "backend/main.py",
-            "use": "@vercel/python",
-            "config": {
-                "maxLambdaSize": "15mb",
-                "runtime": "python3.8"
-            }
+            "use": "@vercel/python"
         }
     ],
     "routes": [
         {
-            "src": "/(.*)",
-            "dest": "/frontend/public/$1"
+            "src": "/api/(.*)",             
+            "dest": "/backend/main.py"
         },
         {
-            "src": "/example-api",
-            "dest": "/backend/main.py"
+            "src": "/(.*)",                 
+            "dest": "/frontend/$1"          
         }
     ]
 }
