@@ -2,12 +2,14 @@
     "version": 2,
     "builds": [
         {
-            "src": "frontend/public/index.html",
-            "use": "@vercel/static-build",
+            "src": "frontend",
+            "use": "@vercel/node",
             "config": {
-                "distDir": "frontend/public"
+                "runtime": "nodejs14.x",
+                "buildCommand": "npm run build",
+                "outputDirectory": "frontend/build"
             }
-        },
+        }
         {
             "src": "backend/main.py",
             "use": "@vercel/python",
