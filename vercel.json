@@ -1,0 +1,30 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "frontend/public/index.html",
+            "use": "@vercel/static-build",
+            "config": {
+                "distDir": "frontend/public"
+            }
+        },
+        {
+            "src": "backend/main.py",
+            "use": "@vercel/python",
+            "config": {
+                "maxLambdaSize": "15mb",
+                "runtime": "python3.8"
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/frontend/public/$1"
+        },
+        {
+            "src": "/example-api",
+            "dest": "/backend/main.py"
+        }
+    ]
+}
