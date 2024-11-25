@@ -6,7 +6,7 @@ function App() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('/example-api');
+                const response = await fetch('/api/example-api');
                 if (!response.ok) {
                     console.error('请求失败，状态码:', response.status);
                     return;
